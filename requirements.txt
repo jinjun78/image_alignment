@@ -1,0 +1,4 @@
+Pillow
+czifile
+opencv-contrib-python
+numpy
