@@ -10,7 +10,7 @@ class Split:
         self.image = image
         self.outname = image[:-4]
 
-        self.im = Image.open(self.image)
+        self.im = Image.open(self.image).convert('LA')
 
 
     def save_r(self):
@@ -35,5 +35,10 @@ class Split:
         print(self.outname, ": B channel split and saved.")
 
     # print(outname, ": RGB channels separated and saved.")
+
+    # Test if image is opened in greyscale
+    def testgrey(self):
+        self.im.save('greyscale.png')
+
 
 
