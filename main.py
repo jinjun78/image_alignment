@@ -4,8 +4,8 @@ import cv2
 
 
 # This script is for alignment of R channel of "P2 SOO1" and B channel of "P2 S002"
-image1 = "P2 S007.jpg"
-image2 = "P2 S008.jpg"
+image1 = "sample1.png"
+image2 = "sample2.png"
 
 if __name__ == '__main__':
     refFilename = image1  #reference image
