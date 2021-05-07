@@ -2,8 +2,6 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-MAX_FEATURES = 500
-GOOD_MATCH_PERCENT = 0.15
 
 image1 = cv2.imread("sample1.png")
 image2 = cv2.imread("sample2.png")
@@ -41,20 +39,20 @@ matches = bf.knnMatch(des1, des2, k=2)
 
 # Select good matches
 good=[]
-goode_without_list = []
+good_without_list = []
 for m,n in matches:
     if m.distance < 0.75*n.distance:
         good.append([m])
-        goode_without_list.append(m)
+        good_without_list.append(m)
 
 # Draw good matches
 img3 = cv2.drawMatchesKnn(image1, kp1, image2, kp2, good, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
 
-cv2.imwrite("matches.jpg", img3)
+# cv2.imwrite("matches.jpg", img3)
 
 # Extract location of good matches
-points1 = np.float32([kp1[m.queryIdx].pt for m in goode_without_list])
-points2 = np.float32([kp2[m.trainIdx].pt for m in goode_without_list])
+points1 = np.float32([kp1[m.queryIdx].pt for m in good_without_list])
+points2 = np.float32([kp2[m.trainIdx].pt for m in good_without_list])
 
 # Find Homography
 h, status = cv2.findHomography(points1, points2)
@@ -66,4 +64,4 @@ imReg = cv2.warpPerspective(image1, h, (width, height))
 # Save aligned image
 outFilename = "aligned1.jpg"
 print("Saving aligned image: ", outFilename)
-cv2.imwrite(outFilename, imReg)
+# cv2.imwrite(outFilename, imReg)
