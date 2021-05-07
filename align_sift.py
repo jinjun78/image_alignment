@@ -5,8 +5,8 @@ from matplotlib import pyplot as plt
 MAX_FEATURES = 500
 GOOD_MATCH_PERCENT = 0.15
 
-image1 = cv2.imread("section1_grey.png")
-image2 = cv2.imread("section2_grey.png")
+image1 = cv2.imread("sample1.png")
+image2 = cv2.imread("sample2.png")
 
 # Convert images to greyscale
 im1_Grey = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
