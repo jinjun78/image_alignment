@@ -12,20 +12,30 @@ image2 = cv2.imread("sample2.png")
 im1_Grey = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
 im2_Grey = cv2.cvtColor(image2, cv2.COLOR_BGR2GRAY)
 
+# Detect ORB features and compute descriptor
+## Only for comparision
+orb = cv2.ORB_create()
+keypoints1, descriptors1 = orb.detectAndCompute(im1_Grey, None)
+keypoints2, descriptors2 = orb.detectAndCompute(im2_Grey, None)
+image1_o = cv2.drawKeypoints(im1_Grey, keypoints1, None, color=(0,255,0), flags=0)
+image2_o = cv2.drawKeypoints(im2_Grey, keypoints2, None, color=(0,255,0), flags=0)
+
 # Detect SIFT features and compute descriptor
 sift = cv2.SIFT_create()
-
 kp1, des1 = sift.detectAndCompute(im1_Grey, None)
 kp2, des2 = sift.detectAndCompute(im2_Grey, None)
 
 # Check key points detected
-image1_d = cv2.drawKeypoints(im1_Grey, kp1, None, color=(0,255,0), flags=0)
-image2_d = cv2.drawKeypoints(im2_Grey, kp2, None, color=(0,0,255), flags=0)
+image1_s = cv2.drawKeypoints(im1_Grey, kp1, None, color=(0,0,255), flags=0)
+image2_s = cv2.drawKeypoints(im2_Grey, kp2, None, color=(0,0,255), flags=0)
 
-plt.imshow(image1_d),plt.show()
-plt.imshow(image2_d),plt.show()
+# Show features detected by ORB and SIFT
+plt.imshow(image1_o),plt.show()
+plt.imshow(image2_o),plt.show()
+plt.imshow(image1_s),plt.show()
+plt.imshow(image2_s),plt.show()
 
-# Match features
+# Match features detected by SIFT
 bf = cv2.BFMatcher()
 matches = bf.knnMatch(des1, des2, k=2)
 
@@ -40,7 +50,7 @@ for m,n in matches:
 # Draw good matches
 img3 = cv2.drawMatchesKnn(image1, kp1, image2, kp2, good, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
 
-plt.imshow(img3),plt.show()
+cv2.imwrite("matches.jpg", img3)
 
 # Extract location of good matches
 points1 = np.float32([kp1[m.queryIdx].pt for m in goode_without_list])
@@ -53,9 +63,7 @@ h, status = cv2.findHomography(points1, points2)
 height, width, channels = image2.shape
 imReg = cv2.warpPerspective(image1, h, (width, height))
 
-# Show aligned image
-plt.imshow(imReg),plt.show()
-
-# outFilename = "aligned1.jpg"
-# print("Saving aligned image: ", outFilename)
-# cv2.imwrite(outFilename, imReg)
+# Save aligned image
+outFilename = "aligned1.jpg"
+print("Saving aligned image: ", outFilename)
+cv2.imwrite(outFilename, imReg)
