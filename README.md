@@ -1,14 +1,12 @@
-# image_alignment
-imaging aligning and its quality test
+# Image alignment
+Attempts to automatically align section images.
 
 ## Samples Description 
-**resource image: "sec1_con_resized.png"**
-
+![](sec1_con_resized.png)
 A cropped section from P2 S007.jpg with size of 8 times smaller, higher contrast and a grey background.
 
-**target image: a section of P2 S008.jpg**
-
-A cropped section from P2 S007.jpg with size of 8 times smaller, higher contrast and a grey background.
+![](sec2_con_resized.png)
+A cropped section from P2 S008.jpg with size of 8 times smaller, higher contrast and a grey background.
 
 ## Methods
 1. 'align_orb.py' was run to align the two samples. Features of the images were detected by ORB detector. Features were matched by cv2.DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING and top 15% matches were selected for warping.
