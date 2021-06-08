@@ -1,5 +1,5 @@
 # Image alignment
-Attempts to automatically align sequential histochemically stained skeletal muscle sections from [Elson et al. (2002)](https://sci-hub.mksa.top/10.1016/s0960-8966(02)00047-0) images using [openCV](https://opencv.org/).
+Attempts to automatically align images of sequential, histochemically stained skeletal muscle sections from [Elson et al. (2002)](https://sci-hub.mksa.top/10.1016/s0960-8966(02)00047-0) using [openCV](https://opencv.org/).
 
 ## Samples Description 
 ![](sec1_con_resized.png)
