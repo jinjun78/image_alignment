@@ -3,8 +3,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 
-image1 = cv2.imread("equ1.png")
-image2 = cv2.imread("equ2.png")
+image1 = cv2.imread("sec1_con_resized.png")
+image2 = cv2.imread("sec2_con_resized.png")
 
 # Convert images to greyscale
 im1_Grey = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
@@ -35,18 +35,20 @@ plt.imshow(image2_s),plt.show()
 bf = cv2.BFMatcher()
 matches = bf.knnMatch(des1, des2, k=2)
 
+# matches = cv2.DescriptorMatcher(des1, des2)
+
 # Select good matches
 good=[]
 good_without_list = []
 for m,n in matches:
-    if m.distance < 0.75*n.distance:
+    if m.distance < 0.6*n.distance:
         good.append([m])
         good_without_list.append(m)
 
 # Draw good matches
 img3 = cv2.drawMatchesKnn(image1, kp1, image2, kp2, good, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
 
-cv2.imwrite("matches.jpg", img3)
+cv2.imwrite("results/matches_060.jpg", img3)
 
 # Extract location of good matches
 points1 = np.float32([kp1[m.queryIdx].pt for m in good_without_list])
@@ -60,6 +62,6 @@ height, width, channels = image2.shape
 imReg = cv2.warpPerspective(image1, h, (width, height))
 
 # Save aligned image
-outFilename = "aligned1.jpg"
+outFilename = "aligned_060.jpg"
 print("Saving aligned image: ", outFilename)
 cv2.imwrite(outFilename, imReg)
