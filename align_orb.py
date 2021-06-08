@@ -10,6 +10,8 @@ def alignImages(im1, im2):
     im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2Gray = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
 
+    # cv2.imwrite("greyscale_cv2.png", im1Gray)
+
     # Detect ORB features and compute descriptor
     orb = cv2.ORB_create(MAX_FEATURES)
     keypoints1, descriptors1 = orb.detectAndCompute(im1Gray, None)
