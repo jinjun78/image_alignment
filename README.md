@@ -22,7 +22,7 @@ A cropped section from P2 S007.jpg with size of 8 times smaller, higher contrast
 5. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than *0.55* were used for warping.
 
 ## Results
-The results are stored at the branch of "results". The results are described as below.
+The results are stored at the directory of "results". The results are described as below.
 
 Matches and aligned result of method 1 are named as "matches_orb.jpg" and "aligned_orb.jpg" respectively.
 
