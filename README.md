@@ -13,13 +13,13 @@ A cropped section from P2 S007.jpg with size of 8 times smaller, higher contrast
 ## Methods
 1. 'align_orb.py' was run to align the two samples. Features of the images were detected by ORB detector. Features were matched by cv2.DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING and top 15% matches were selected for warping.
 
-2. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than 0.75 were used for warping.
+2. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than *0.75* were used for warping.
 
-3. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than 0.65 were used for warping.
+3. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than *0.65* were used for warping.
 
-4. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than 0.6 were used for warping.
+4. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than *0.6* were used for warping.
 
-5. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than 0.55 were used for warping.
+5. 'align_sift.py' was run to align the two samples. Features of the images were detected by SIFT detector and matched by cv2.BFMatcher.knnMatch. Matches with distance smaller than *0.55* were used for warping.
 
 ## Results
 The results are stored at the branch of "results". The results are described as below.
