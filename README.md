@@ -24,14 +24,32 @@ A cropped section from P2 S007.jpg with size of 8 times smaller, higher contrast
 ## Results
 The results are stored at the directory of "results". The results are described as below.
 
-Matches and aligned result of method 1 are named as "matches_orb.jpg" and "aligned_orb.jpg" respectively.
+### Method 1
+#### Features & matches
+![](results/matches_orb.jpg)
+#### Alignment
+![](results/aligned_orb.jpg)
 
-Matches and aligned result of method 2 are named as "matches_075.jpg" and "aligned_075.jpg" respectively.
+### Method 2
+#### Features & matches
+![](results/matches_075.jpg)
+#### Alignment
+![](results/aligned_075.jpg)
 
-Matches and aligned result of method 3 are named as "matches_065.jpg" and "aligned_065.jpg" respectively.
+### Method 3
+#### Features & matches
+![](results/matches_065.jpg)
+#### Alignment
+![](results/aligned_065.jpg)
 
-Matches and aligned result of method 4 are named as "matches_060.jpg" and "aligned_060.jpg" respectively.
+### Method 4
+#### Features & matches
+![](results/matches_060.jpg)
+#### Alignment
+![](results/aligned_060.jpg)
 
-Matches and aligned result of method 5 are named as "matches_055.jpg" and "aligned_055.jpg" respectively.
-
-
+### Method 5
+#### Features & matches
+![](results/matches_055.jpg)
+#### Alignment
+![](results/aligned_055.jpg)
