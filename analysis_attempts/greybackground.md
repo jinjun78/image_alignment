@@ -2,12 +2,12 @@
 #### Reference image
 ![reference image](../sec1_con_resized.png)
 
-A cropped section from P2 S007.jpg with size of 8 times smaller, higher contrast and a grey background.
+A cropped section from P2 S007.jpg. The image was converted into greyscale and resized to 400 X 500. Higher contrast and a grey background were applied to the image.
 
 #### Target image
 ![target image](../sec2_con_resized.png)
 
-A cropped section from P2 S008.jpg with size of 8 times smaller, higher contrast and a grey background.
+A cropped section from P2 S008.jpg. The image was converted into greyscale and resized to 400 X 500. Higher contrast and a grey background were applied to the image.
 
 ### Method 1
 [align_orb.py](../align_orb.py) was run to align the two samples. Features of the images were detected by [ORB](https://docs.opencv.org/master/d1/d89/tutorial_py_orb.html) detector. Features were matched by [cv2.DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING](https://docs.opencv.org/3.4/db/d39/classcv_1_1DescriptorMatcher.html) and top 15% matches were selected for warping.
