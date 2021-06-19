@@ -24,6 +24,8 @@ A cropped section from P2 S008.jpg. The image was resized to 400 X 500.
 ![](../results/matches_clr075.jpg)
 #### Alignment
 ![](../results/aligned_clr075.jpg)
+#### Quality test
+![](../results/test_clr075.jpg)
 
 ### Method 3
 [align_sift.py](../align_sift.py) was run to align the two samples. Features of the images were detected by [SIFT](https://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html) detector and matched by [cv2.BFMatcher.knnMatch](https://docs.opencv.org/master/d3/da1/classcv_1_1BFMatcher.html). Matches with distance smaller than *0.70* were used for warping.
@@ -38,3 +40,5 @@ A cropped section from P2 S008.jpg. The image was resized to 400 X 500.
 ![](../results/matches_orb_clr.jpg)
 #### Alignment
 ![](../results/aligned_orb_clr.jpg)
+#### Quality test
+![](../results/test_orb_clr.jpg)
