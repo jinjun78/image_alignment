@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-def alignSIFT(im1, im2):
+def alignSIFT(im1, im2, out1, out2):
     im1_Grey = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2_Grey = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
 
@@ -25,7 +25,7 @@ def alignSIFT(im1, im2):
     # Draw good matches
     good_match = cv2.drawMatchesKnn(im1, kp1, im2, kp2, good, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
 
-    match_name = "results/matches_clr070.jpg"
+    match_name = out1
     print("Saving matching image: ", match_name)
     cv2.imwrite(match_name, good_match)
 
@@ -41,7 +41,7 @@ def alignSIFT(im1, im2):
     imReg = cv2.warpPerspective(im1, h, (width, height))
 
     # Save aligned image
-    outFilename = "results/aligned_clr070.jpg"
+    outFilename = out2
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
     return outFilename

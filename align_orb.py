@@ -5,7 +5,7 @@ import numpy as np
 MAX_FEATURES = 500
 GOOD_MATCH_PERCENT = 0.15
 
-def alignORB(im1, im2):
+def alignORB(im1, im2, out1, out2):
     # Convert images to grayscale
     im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2Gray = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
@@ -36,7 +36,8 @@ def alignORB(im1, im2):
 
     # Draw top matches
     imMatches = cv2.drawMatches(im1, keypoints1, im2, keypoints2, matches, None)
-    cv2.imwrite("results/matches_orb.jpg", imMatches)
+    matchesFilename = out1
+    cv2.imwrite(matchesFilename, imMatches)
 
     # Extract location of good matches
     points1 = np.zeros((len(matches), 2), dtype=np.float32)
@@ -56,7 +57,7 @@ def alignORB(im1, im2):
     print("Aligning images ...")
 
     # Write aligned image to disk
-    outFilename = "results\\aligned_orb.jpg"
+    outFilename = out2
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
 
