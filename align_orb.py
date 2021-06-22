@@ -5,17 +5,23 @@ import numpy as np
 MAX_FEATURES = 500
 GOOD_MATCH_PERCENT = 0.15
 
-def alignImages(im1, im2):
+def alignORB(im1, im2):
     # Convert images to grayscale
     im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2Gray = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
-
-    # cv2.imwrite("greyscale_cv2.png", im1Gray)
 
     # Detect ORB features and compute descriptor
     orb = cv2.ORB_create(MAX_FEATURES)
     keypoints1, descriptors1 = orb.detectAndCompute(im1Gray, None)
     keypoints2, descriptors2 = orb.detectAndCompute(im2Gray, None)
+
+    # Detect ORB features and compute descriptor
+    # image1_o = cv2.drawKeypoints(im1Gray, keypoints1, None, color=(0,255,0), flags=0)
+    # image2_o = cv2.drawKeypoints(im2Gray, keypoints2, None, color=(0,255,0), flags=0)
+
+    # Show features detected by ORB
+    # plt.imshow(image1_o),plt.show()
+    # plt.imshow(image2_o),plt.show()
 
     # Match features
     matcher = cv2.DescriptorMatcher_create(cv2.DESCRIPTOR_MATCHER_BRUTEFORCE_HAMMING)
@@ -30,7 +36,7 @@ def alignImages(im1, im2):
 
     # Draw top matches
     imMatches = cv2.drawMatches(im1, keypoints1, im2, keypoints2, matches, None)
-    cv2.imwrite("matches.jpg", imMatches)
+    cv2.imwrite("results/matches_orb.jpg", imMatches)
 
     # Extract location of good matches
     points1 = np.zeros((len(matches), 2), dtype=np.float32)
@@ -50,7 +56,7 @@ def alignImages(im1, im2):
     print("Aligning images ...")
 
     # Write aligned image to disk
-    outFilename = "aligned1.jpg"
+    outFilename = "results\\aligned_orb.jpg"
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
 
