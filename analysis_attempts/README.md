@@ -5,3 +5,5 @@ Attempts to automatically align images of sequential, histochemically stained sk
 1. [Greyscale images with synthetic background](./greybackground.md) tried to align two greyscale images with smooth, grey background. 
 
 2. [Brightened greyscale images with synthetic background](./brightened.md) tried to align two brightened greyscale images with grey background.
+
+3. [Coloured images with synthetic background](./original_colour.md) tried to align two images with original colour.
