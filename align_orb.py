@@ -34,6 +34,8 @@ def alignORB(im1, im2, out1, out2):
     numGoodMatches = int(len(matches) * GOOD_MATCH_PERCENT)
     matches = matches[:numGoodMatches]
 
+    print("Number of good matches found: ", len(matches))
+
     # Draw top matches
     imMatches = cv2.drawMatches(im1, keypoints1, im2, keypoints2, matches, None)
     matchesFilename = out1
@@ -54,14 +56,10 @@ def alignORB(im1, im2, out1, out2):
     height, width, channels = im2.shape
     imReg = cv2.warpPerspective(im1, h, (width, height))
 
-    print("Aligning images ...")
-
     # Write aligned image to disk
     outFilename = out2
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
-
-    print('Estimated homography : \n', h)
 
 # if __name__ == '__main__':
 #

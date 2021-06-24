@@ -18,13 +18,14 @@ def alignSIFT(im1, im2, out1, out2):
     good = []
     good_without_list = []
     for m, n in matches:
-        if m.distance < 0.7 * n.distance:
+        if m.distance < 0.65 * n.distance:
             good.append([m])
             good_without_list.append(m)
 
+    print("Number of good matches found: ", len(good))
+
     # Draw good matches
     good_match = cv2.drawMatchesKnn(im1, kp1, im2, kp2, good, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
-
     match_name = out1
     print("Saving matching image: ", match_name)
     cv2.imwrite(match_name, good_match)
@@ -35,7 +36,6 @@ def alignSIFT(im1, im2, out1, out2):
 
     # Find Homography
     h, status = cv2.findHomography(points1, points2)
-
     # Use Homography
     height, width, channels = im2.shape
     imReg = cv2.warpPerspective(im1, h, (width, height))
@@ -45,4 +45,4 @@ def alignSIFT(im1, im2, out1, out2):
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
     return outFilename
-    # Test alignment quality
+
