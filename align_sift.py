@@ -1,5 +1,9 @@
 import cv2
 import numpy as np
+from tabulate import tabulate
+
+
+GOOD_MATCH_DISTANCE = 0.75
 
 def alignSIFT(im1, im2, out1, out2):
     im1_Grey = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
@@ -10,8 +14,6 @@ def alignSIFT(im1, im2, out1, out2):
     kp1, des1 = sift.detectAndCompute(im1_Grey, None)
     kp2, des2 = sift.detectAndCompute(im2_Grey, None)
 
-    print("Total features detected in Reference Image: ", len(kp1),
-          "\nTotal features detected in Target Image: ", len(kp2))
 
     # Match features detected by SIFT
     bf = cv2.BFMatcher()
@@ -21,11 +23,9 @@ def alignSIFT(im1, im2, out1, out2):
     good = []
     good_without_list = []
     for m, n in matches:
-        if m.distance < 0.65 * n.distance:
+        if m.distance < GOOD_MATCH_DISTANCE * n.distance:
             good.append([m])
             good_without_list.append(m)
-
-    print("Number of good matches found: ", len(good))
 
     # Draw good matches
     good_match = cv2.drawMatchesKnn(im1, kp1, im2, kp2, good, None, flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS)
@@ -48,4 +48,11 @@ def alignSIFT(im1, im2, out1, out2):
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
     # return outFilename
+
+    table = [["Total features detected in Ref Image", len(kp1)],
+             ["Total features detected in Tar Image", len(kp2)],
+             ["Euclidean Distance", "<"+str(GOOD_MATCH_DISTANCE)],
+             ["Number of good matches found", len(good)]]
+
+    print(tabulate(table, tablefmt="pretty"))
 
