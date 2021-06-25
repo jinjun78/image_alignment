@@ -1,6 +1,7 @@
 from __future__ import print_function
 import cv2
 import numpy as np
+from matplotlib import pyplot as plt
 
 MAX_FEATURES = 500
 GOOD_MATCH_PERCENT = 0.15
@@ -14,6 +15,9 @@ def alignORB(im1, im2, out1, out2):
     orb = cv2.ORB_create(MAX_FEATURES)
     keypoints1, descriptors1 = orb.detectAndCompute(im1Gray, None)
     keypoints2, descriptors2 = orb.detectAndCompute(im2Gray, None)
+
+    print("Total features detected in Reference Image: ", len(keypoints1),
+          "\nTotal features detected in Target Image: ", len(keypoints2))
 
     # Detect ORB features and compute descriptor
     # image1_o = cv2.drawKeypoints(im1Gray, keypoints1, None, color=(0,255,0), flags=0)

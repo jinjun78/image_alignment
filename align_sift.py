@@ -10,6 +10,9 @@ def alignSIFT(im1, im2, out1, out2):
     kp1, des1 = sift.detectAndCompute(im1_Grey, None)
     kp2, des2 = sift.detectAndCompute(im2_Grey, None)
 
+    print("Total features detected in Reference Image: ", len(kp1),
+          "\nTotal features detected in Target Image: ", len(kp2))
+
     # Match features detected by SIFT
     bf = cv2.BFMatcher()
     matches = bf.knnMatch(des1, des2, k=2)
@@ -44,5 +47,5 @@ def alignSIFT(im1, im2, out1, out2):
     outFilename = out2
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
-    return outFilename
+    # return outFilename
 
