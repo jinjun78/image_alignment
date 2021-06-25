@@ -1,4 +1,9 @@
 Pillow
 czifile
 opencv-contrib-python
-numpy
+silx
+scipy
+pyopencl
+tabulate
+
+
