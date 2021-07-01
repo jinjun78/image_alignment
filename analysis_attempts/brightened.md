@@ -1,5 +1,5 @@
 ## Samples Description 
-#### Reference image__
+#### Reference image
 ![reference image](../sec1_bright.png)
 
 A cropped section from P2 S007.jpg. The image is brightened version of the reference image from [greybackground](./greybackground.md)   

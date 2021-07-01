@@ -14,10 +14,6 @@ A cropped section from P2 S008.jpg. The image was converted into greyscale and r
 
 #### Features & matches
 ![](../results/matches_orb.jpg)
-
-|  Matching Data  |   |
-| -----------------------------------  | --- |
-
 #### Alignment
 ![](../results/aligned_orb.jpg)
 #### Quality test
@@ -27,9 +23,6 @@ A cropped section from P2 S008.jpg. The image was converted into greyscale and r
 [align_sift.py](../align_sift.py) was run to align the two samples. Features of the images were detected by [SIFT](https://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html) detector and matched by [cv2.BFMatcher.knnMatch](https://docs.opencv.org/master/d3/da1/classcv_1_1BFMatcher.html). Matches with distance smaller than *0.75* were used for warping.
 #### Features & matches
 ![](../results/matches_075.jpg)
-|  Matching Data  |   |
-| -----------------------------------  | --- |
-
 #### Alignment
 ![](../results/aligned_075.jpg)
 
@@ -37,9 +30,6 @@ A cropped section from P2 S008.jpg. The image was converted into greyscale and r
 [align_sift.py](../align_sift.py) was run to align the two samples. Features of the images were detected by [SIFT](https://docs.opencv.org/master/da/df5/tutorial_py_sift_intro.html) detector and matched by [cv2.BFMatcher.knnMatch](https://docs.opencv.org/master/d3/da1/classcv_1_1BFMatcher.html). Matches with distance smaller than *0.65* were used for warping.
 #### Features & matches
 ![](../results/matches_065.jpg)
-|  Matching Data  |   |
-| -----------------------------------  | --- |
-
 #### Alignment
 ![](../results/aligned_065.jpg)
 
