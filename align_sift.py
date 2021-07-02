@@ -3,9 +3,7 @@ import numpy as np
 from tabulate import tabulate
 
 
-GOOD_MATCH_DISTANCE = 0.75
-
-def alignSIFT(im1, im2, out1, out2):
+def alignSIFT(im1, im2, out1, out2, distance):
     im1_Grey = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2_Grey = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
 
@@ -23,7 +21,7 @@ def alignSIFT(im1, im2, out1, out2):
     good = []
     good_without_list = []
     for m, n in matches:
-        if m.distance < GOOD_MATCH_DISTANCE * n.distance:
+        if m.distance < distance * n.distance:
             good.append([m])
             good_without_list.append(m)
 
@@ -51,7 +49,7 @@ def alignSIFT(im1, im2, out1, out2):
 
     table = [["Total features detected in Ref Image", len(kp1)],
              ["Total features detected in Tar Image", len(kp2)],
-             ["Euclidean Distance", "<"+str(GOOD_MATCH_DISTANCE)],
+             ["Euclidean Distance", "<"+str(distance)],
              ["Number of good matches found", len(good)]]
 
     print(tabulate(table, tablefmt="pretty"))

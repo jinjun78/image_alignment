@@ -3,23 +3,39 @@ import align_sift as aln_sift
 import test_alignment as test
 import cv2
 from PIL import Image
+import sys
 
+
+sys.stdout = open("results/output.txt", "a")
 
 if __name__ == '__main__':
     # Alignment
-    refFilename = "sec1_colour.png" #reference image
-    imFilename = "sec2_colour.png"  #target image
+    refFilename = "section1_colour.png" #reference image
+    imFilename = "section2_colour.png"  #target image
     ref = cv2.imread(refFilename, cv2.IMREAD_COLOR)
     tar = cv2.imread(imFilename, cv2.IMREAD_COLOR)
     print("Reference image : ", refFilename,
           "\nImage to be aligned : ", imFilename)
 
-    matchFilename = "results/matches_auto.jpg" #features matching image
-    outFilename = "results/aligned_auto.jpg" #aligned image
-    ## Aligning function option: ORB
-    align = aln_orb.alignORB(ref, tar, matchFilename, outFilename)
-    ## Aligning function option: SIFT
-    # align = aln_sift.alignSIFT(ref, tar, matchFilename, outFilename)
+    ## Aligning option1: ORB
+    percent = 0.25 ## Good Match Percent
+    ### Name the id of output image
+    para = str(percent).replace(".", "")
+    file_id = "colour_o%s"%para
+
+    matchFilename = "results/matches_%s.jpg" %file_id  # features matching image
+    outFilename = "results/aligned_%s.jpg" %file_id #aligned image
+    align = aln_orb.alignORB(ref, tar, matchFilename, outFilename, percent)
+
+    ## Aligning option2: SIFT
+    # distance = 0.85
+    ### Name the id of output image
+    # para = str(distance).replace(".", "")
+    # file_id = "colour_s%s" % para
+
+    # matchFilename = "results/matches_%s.jpg" %file_id #features matching image
+    # outFilename = "results/aligned_%s.jpg" %file_id #aligned image
+    # align = aln_sift.alignSIFT(ref, tar, matchFilename, outFilename, distance)
 
     # Result testing
     ref = Image.open(refFilename)
@@ -36,5 +52,8 @@ if __name__ == '__main__':
         row = int(i / ncols)
         col = i % ncols
         imnew.paste(im, (w * col, h * row))
-    print("Saving alignment quality test image: ", outFilename)
-    imnew.resize(reversed(ims[0].size)).save("results/test_auto.jpg")
+    print("Saving alignment quality test image: ", outFilename, "\n")
+    imnew.resize(reversed(ims[0].size)).save("results/test_%s.jpg" %file_id)
+
+
+sys.stdout.close()

@@ -5,9 +5,9 @@ from tabulate import tabulate
 from matplotlib import pyplot as plt
 
 MAX_FEATURES = 500
-GOOD_MATCH_PERCENT = 0.15
 
-def alignORB(im1, im2, out1, out2):
+
+def alignORB(im1, im2, out1, out2, percent):
     # Convert images to grayscale
     im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2Gray = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
@@ -33,7 +33,7 @@ def alignORB(im1, im2, out1, out2):
     matches.sort(key=lambda x: x.distance, reverse=False)
 
     # Remove not so good matches
-    numGoodMatches = int(len(matches) * GOOD_MATCH_PERCENT)
+    numGoodMatches = int(len(matches) * percent)
     matches = matches[:numGoodMatches]
 
     print("Number of good matches found: ", len(matches))
@@ -65,7 +65,7 @@ def alignORB(im1, im2, out1, out2):
 
     table = [["Total features detected in Ref Image", len(keypoints1)],
              ["Total features detected in Tar Image", len(keypoints2)],
-             ["Good Match Percent", GOOD_MATCH_PERCENT],
+             ["Good Match Percent", percent],
              ["Number of good matches found", len(matches)]]
 
     print(tabulate(table, tablefmt="pretty"))
