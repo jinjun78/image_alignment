@@ -1,8 +1,10 @@
 import align_orb as aln_orb
 import align_sift as aln_sift
 import test_alignment as test
+import test_quality as quality
 import cv2
 from PIL import Image
+from tabulate import tabulate
 import sys
 
 
@@ -10,14 +12,14 @@ sys.stdout = open("results/output.txt", "a")
 
 if __name__ == '__main__':
     # Alignment
-    refFilename = "section1_colour.png" #reference image
-    imFilename = "section2_colour.png"  #target image
+    refFilename = "sec1_colour.png" #reference image
+    imFilename = "sec2_colour.png"  #target image
     ref = cv2.imread(refFilename, cv2.IMREAD_COLOR)
     tar = cv2.imread(imFilename, cv2.IMREAD_COLOR)
     print("Reference image : ", refFilename,
           "\nImage to be aligned : ", imFilename)
 
-    ## Aligning option1: ORB
+    # Aligning option1: ORB
     percent = 0.25 ## Good Match Percent
     ### Name the id of output image
     para = str(percent).replace(".", "")
@@ -38,13 +40,14 @@ if __name__ == '__main__':
     # align = aln_sift.alignSIFT(ref, tar, matchFilename, outFilename, distance)
 
     # Result testing
+    outFilename = "results/aligned_br075.jpg"
     ref = Image.open(refFilename)
     tar = Image.open(imFilename)
     out = Image.open(outFilename)
     ## Match reference image and target image respectively with the aligned image,
     ## make the new image into two of the channels of RGB array
-    ims = [test.alignImages(ref,out,0,1),
-           test.alignImages(tar,out,0,1)]
+    ims = [test.alignImages(ref,out,1,0),
+           test.alignImages(tar,out,1,0)]
     nrows, ncols = (1, 2)
     w, h = ims[0].size
     imnew = Image.new("RGB", (w * ncols, h * nrows))
@@ -53,7 +56,12 @@ if __name__ == '__main__':
         col = i % ncols
         imnew.paste(im, (w * col, h * row))
     print("Saving alignment quality test image: ", outFilename, "\n")
-    imnew.resize(reversed(ims[0].size)).save("results/test_%s.jpg" %file_id)
+    # imnew.resize(reversed(ims[0].size)).save("results/test_br075.jpg" )
 
-
+    dist1, corr1 = quality.eucli_dist(ref, out)
+    dist2, corr2 = quality.eucli_dist(tar, out)
+    table = [["Source", "Euclidean Distance", "Correlation Coefficient"],
+             ["Reference Image", dist1, corr1],
+             ["Target Image", dist2, corr2]]
+    print(tabulate(table, headers="firstrow",tablefmt="pretty"))
 sys.stdout.close()
