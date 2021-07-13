@@ -57,7 +57,7 @@ def alignORB(im1, im2, im3, out1, out2, percent):
 
     # Use homography
     height, width, channels = im2.shape
-    imReg = cv2.warpPerspective(im3, h, (width, height))
+    imReg = cv2.warpPerspective(im3, h, (width, height))  # warping im3 with h from im1 and im2 matching
 
     # Write aligned image to disk
     outFilename = out2
@@ -67,7 +67,7 @@ def alignORB(im1, im2, im3, out1, out2, percent):
 
 refFilename = "S007_clr_br.png" #reference image
 imFilename = "S008_clr_br.png"  #target image
-applyFile = "S005_clr_br.png"
+applyFile = "S005_clr_br.png" # image to be applied
 ref = cv2.imread(refFilename, cv2.IMREAD_COLOR)
 tar = cv2.imread(imFilename, cv2.IMREAD_COLOR)
 app = cv2.imread(applyFile, cv2.IMREAD_COLOR)
