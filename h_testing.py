@@ -8,7 +8,7 @@ import test_quality as quality
 MAX_FEATURES = 500
 
 
-def alignORB(im1, im2, im3, out1, out2, percent):
+def alignORB(im1, im2, out1, percent):
     # Convert images to grayscale
     im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2Gray = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
@@ -54,23 +54,21 @@ def alignORB(im1, im2, im3, out1, out2, percent):
 
     # Find homography
     h, status = cv2.findHomography(points1, points2, cv2.RANSAC)
+    return(h)
 
+def warpImage(im,h):
     # Use homography
-    height, width, channels = im2.shape
-    imReg = cv2.warpPerspective(im3, h, (width, height))  # warping im3 with h from im1 and im2 matching
-
-    # Write aligned image to disk
-    outFilename = out2
-    print("Saving aligned image: ", outFilename)
-    cv2.imwrite(outFilename, imReg)
-
+    height, width, channels = im.shape
+    imReg = cv2.warpPerspective(im, h, (width, height))  # warping im3 with h from im1 and im2 matching
+    return(imReg)
 
 refFilename = "S007_clr_br.png" #reference image
 imFilename = "S008_clr_br.png"  #target image
-applyFile = "S005_clr_br.png" # image to be applied
+applyFile = "Conor.jpg" # image to be applied
 ref = cv2.imread(refFilename, cv2.IMREAD_COLOR)
 tar = cv2.imread(imFilename, cv2.IMREAD_COLOR)
 app = cv2.imread(applyFile, cv2.IMREAD_COLOR)
+conorbig = cv2.imread("ConorBig.jpg", cv2.IMREAD_COLOR)
 
 percent = 0.2 ## Good Match Percent
 ### Name the id of output image
@@ -80,12 +78,17 @@ file_id = "h%s"%para
 
 matchFilename = "matches_%s.jpg" %file_id  # features matching image
 outFilename = "aligned_%s.jpg" %file_id #aligned image
-align = alignORB(ref, tar, app, matchFilename, outFilename, percent)
+align_h = alignORB(ref, tar, matchFilename, percent)
+warped_im = warpImage(app, align_h)
+cv2.imwrite("warped_im.jpg", warped_im)
+warped_big = warpImage(conorbig, align_h)
+cv2.imwrite("warped_big_im.jpg",warped_big)
 
 # Result testing
-ref = Image.open(refFilename)
-app = Image.open(applyFile)
-out = Image.open(outFilename)
+# Convert to PIL images
+ref = Image.fromarray(cv2.cvtColor(ref, cv2.COLOR_BGR2RGB))
+app = Image.fromarray(cv2.cvtColor(app, cv2.COLOR_BGR2RGB))
+out = Image.fromarray(cv2.cvtColor(warped_im, cv2.COLOR_BGR2RGB))
 ## Match reference image and target image respectively with the aligned image,
 ## make the new image into two of the channels of RGB array
 ims = [test.alignImages(ref, out, 1, 0),
@@ -100,7 +103,7 @@ for i, im in enumerate(ims):
 
 testFilename = "test_%s.jpg" % file_id  # quality test image
 print("Saving alignment quality test image: ", testFilename)
-imnew.resize(reversed(ims[0].size)).save(testFilename)
+imnew.save(testFilename,quality=100)
 
 dist1, corr1 = quality.eucli_dist(app, out)
 table = [["Source", "Euclidean Distance", "Correlation Coefficient"],
