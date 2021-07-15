@@ -28,7 +28,7 @@ arr = np.array(im,dtype=np.uint8)
 
 viewer = napari.view_image(arr,name="Matching fibres between sections")
 #layer_ims = viewer.add_image(arr,rgb=True,scale=[1.0,1.0])
-layer_pts = viewer.add_shapes(data=None,shape_type="line", edge_width=2,edge_color="yellow")
+layer_pts = viewer.add_shapes(data=None,shape_type="line", edge_width=1,edge_color="yellow",mode="ADD_LINE")
 napari.run()
 
 if len(layer_pts.data)>0:
