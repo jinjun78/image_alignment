@@ -227,5 +227,5 @@ Euclidean distance and correlation coefficient between aligned result and source
 |  Target Image   | 14565.674924286894 |   0.7530770666338003    |
 
 ## Conclusion
-In conclusion, alignments launched by ORB method performed better than those by SIFT method. 
-For the quality testing metrics, result with 30% good matches has a smaller Euclidean distance and a higher correlation coefficient than other ORB alignments.
+In conclusion, alignments launched by ORB method performed better than those by SIFT method.
+For the quality testing metrics, result from 30% good matches has a smaller Euclidean distance and a higher correlation coefficient than other ORB alignments. Therefore, **method 7** is the best method in this attempt.
