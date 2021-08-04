@@ -75,7 +75,7 @@ Euclidean distance and correlation coefficient between aligned result and source
 
 
 ## Conclusion
-Comparing to method 2, which was run with the best parameter proved by [colour_brightened](colour_brightened.md), result from method 1 has a larger number of Euclidean distance and a lower correlation to the target image.
+Comparing to method 2, which was run with the best parameter proved by [colour_brightened](colour_brighten.md), result from method 1 has a larger number of Euclidean distance and a lower correlation to the target image.
 Method 1 also performed worse than method 3, which had a similar matches number for warping.
 
 It is also noteworthy that although 30% of good matches has been proved the best parameter for aligning S007 and S008 before, it is not the best method in this case of aligning S005 and S006.

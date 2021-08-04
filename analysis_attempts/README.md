@@ -10,4 +10,6 @@ Attempts to automatically align images of sequential, histochemically stained sk
 
 4. [Coloured images with no background](./colour_nobackground.md) tried to align two coloured images with no background.
 
-5. [Brightened, coloured images with synthetic background](./colour_brightened.md) tried to align two brightened images with original colour.
+5. [Brightened, coloured images with synthetic background](colour_brighten.md) tried to align two brightened images with original colour.
+
+6. [Full, original images](full_images.md) tried to align a pair of original images.
