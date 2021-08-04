@@ -1,12 +1,10 @@
 import cv2
 from PIL import Image
 import numpy
-from sizes import resize_and_crop as resize
-from contrast_n_brightness import contrast_and_brightness
-import align_orb as aln_orb
-import align_sift as aln_sift
-import test_alignment as test
-import test_quality as quality
+from align.sizes import resize_and_crop as resize
+from align.contrast_n_brightness import contrast_and_brightness
+from align import align_orb as aln_orb, align_sift as aln_sift, \
+    test_alignment as test, test_quality as quality
 from tabulate import tabulate
 import sys
 
