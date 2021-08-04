@@ -41,7 +41,7 @@ if __name__ == '__main__':
     tar = tar[:, :, ::-1].copy()
 
     # Aligning option1: ORB
-    percent = 0.3# Good Match Percent
+    percent = 0.5# Good Match Percent
     ### Name the id of output image
     para = str(percent).replace(".", "")
     # Change the name tag for different attempts
