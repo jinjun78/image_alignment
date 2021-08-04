@@ -2,6 +2,8 @@
 
 from PIL import Image
 
+Image.MAX_IMAGE_PIXELS = 400000000
+
 def resize_and_crop(img, size, crop_origin="middle"):
     """
     Resize and crop an image to fit the specified size.
@@ -66,3 +68,15 @@ def resize_and_crop(img, size, crop_origin="middle"):
     else:
         img = img.resize((size[0], size[1]), Image.ANTIALIAS)
     return img
+
+
+if __name__ == '__main__':
+    img1 = Image.open("original/P2 S007.jpg")
+    img2 = Image.open("original/P2 S008.jpg")
+    size = (int(img1.size[0]/50), int(img1.size[1]/50))
+
+    resized_1 = resize_and_crop(img1, size)
+    resized_2 = resize_and_crop(img2, size)
+
+    resized_1.show()
+    resized_2.show()
