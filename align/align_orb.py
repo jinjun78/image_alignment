@@ -4,7 +4,7 @@ import numpy as np
 from tabulate import tabulate
 from matplotlib import pyplot as plt
 
-MAX_FEATURES = 500
+MAX_FEATURES = 1000
 
 
 def alignORB(im1, im2, out1, out2, percent):

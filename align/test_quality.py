@@ -1,6 +1,6 @@
 from PIL import Image
 import numpy as np
-from sizes import resize_and_crop
+from align.sizes import resize_and_crop
 from scipy.spatial import distance
 
 def eucli_dist (source, aligned):

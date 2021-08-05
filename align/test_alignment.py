@@ -1,14 +1,14 @@
 from PIL import Image
 import numpy as np
-from sizes import resize_and_crop
+from align.sizes import resize_and_crop
 
 def alignImages(im1,im2,chX=0,chY=1):
   # Generally, images are of different sizes, so crop "from middle" to match
   targwidth = min((im1.size[0],im2.size[0]))
   targheight = min((im1.size[1],im2.size[1]))
 
-  im1 = resize_and_crop(im1,(targwidth,targheight),crop_origin="middle")
-  im2 = resize_and_crop(im2,(targwidth,targheight),crop_origin="middle")
+  # im1 = resize_and_crop(im1,(targwidth,targheight),crop_origin="middle")
+  # im2 = resize_and_crop(im2,(targwidth,targheight),crop_origin="middle")
 
   # Convert images to greyscale and cast as an array of unsigned 8 bit integers
   arr1 = np.array(im1.convert('L'),dtype=np.uint8)
