@@ -2,18 +2,16 @@ from __future__ import print_function
 import cv2
 import numpy as np
 from tabulate import tabulate
-from matplotlib import pyplot as plt
-
-MAX_FEATURES = 1000
 
 
-def alignORB(im1, im2, out1, out2, percent):
+
+def alignORB(im1, im2, out1, out2, percent, features):
     # Convert images to grayscale
     im1Gray = cv2.cvtColor(im1, cv2.COLOR_BGR2GRAY)
     im2Gray = cv2.cvtColor(im2, cv2.COLOR_BGR2GRAY)
 
     # Detect ORB features and compute descriptor
-    orb = cv2.ORB_create(MAX_FEATURES)
+    orb = cv2.ORB_create(features)
     keypoints1, descriptors1 = orb.detectAndCompute(im1Gray, None)
     keypoints2, descriptors2 = orb.detectAndCompute(im2Gray, None)
 
@@ -63,12 +61,12 @@ def alignORB(im1, im2, out1, out2, percent):
     print("Saving aligned image: ", outFilename)
     cv2.imwrite(outFilename, imReg)
 
-    table = [["Total features detected in Ref Image", len(keypoints1)],
-             ["Total features detected in Tar Image", len(keypoints2)],
-             ["Good Match Percent", percent],
-             ["Number of good matches found", len(matches)]]
-
-    print(tabulate(table, tablefmt="pretty"))
+    # table = [["Total features detected in Ref Image", len(keypoints1)],
+    #          ["Total features detected in Tar Image", len(keypoints2)],
+    #          ["Good Match Percent", percent],
+    #          ["Number of good matches found", len(matches)]]
+    #
+    # print(tabulate(table, tablefmt="pretty"))
 # if __name__ == '__main__':
 #
 #     # Read images with opencv
