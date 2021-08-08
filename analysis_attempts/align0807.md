@@ -1,12 +1,15 @@
 ## Data
 P2 S001.jpg
-![](../original/P2%20S001.jpg)
+![](preview/P2%20S001.jpg)
+
 P2 S002.jpg
-![](../original/P2%20S002.jpg)
+![](preview/P2%20S002.jpg)
+
 P2 S003.jpg
-![](../original/P2%20S003.jpg)
+![](preview/P2%20S003.jpg)
+
 P2 S004.jpg
-![](../original/P2%20S004.jpg)
+![](preview/P2%20S004.jpg)
 
 ## Method
 This attempt aligned full images by ORB method, started with the alignment of P2 S001 as reference and P2 S002 as target, followed by each of the following full images as target to the last aligned image.
@@ -33,7 +36,8 @@ Target image: P2 S002.jpg
 Aligned1
 ![](../final_output/aligned/good/aligned_1_1000_0.2(40j).jpg)
 #### Quality test
-![](../final_output/quality%20test/test_1_1000_0.2.jpg)
+![](../final_output/quality%20test/good/test_1_1000_0.2.jpg)
+
 The image has both the lowest distance and the highest coefficient to the target image.
 Euclidean distance and correlation coefficient between aligned result and source images were calculated as follows:
 
@@ -57,7 +61,8 @@ Target image: P2 S003.jpg
 Aligned2
 ![](../final_output/aligned/good/aligned_4_1000_0.1.jpg)
 #### Quality test
-![](../final_output/quality%20test/test_4_1000_0.1.jpg)
+![](../final_output/quality%20test/good/test_4_1000_0.1.jpg)
+
 The image has both the lowest distance and the highest coefficient to the target image.
 Euclidean distance and correlation coefficient between aligned result and source images were calculated as follows:
 
@@ -81,7 +86,8 @@ Target image: P2 S004.jpg
 Aligned1
 ![](../final_output/aligned/good/aligned_5_1000_0.6.jpg)
 #### Quality test
-![](../final_output/quality%20test/test_5_1000_0.6.jpg)
+![](../final_output/quality%20test/good/test_5_1000_0.6.jpg)
+
 The image has the highest coefficient to the target image.
 Euclidean distance and correlation coefficient between aligned result and source images were calculated as follows:
 
