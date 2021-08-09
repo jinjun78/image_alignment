@@ -14,21 +14,34 @@ class Worlflow():
         self.im = im
         self.num = num
 
-        path1 = "final_output/aligned/good/{}".format(ref)
+        path1 = "original/P2 {}".format(ref)
+        # path1 = "final_output/aligned/good/{}".format(ref)
         path2 = "original/P2 {}".format(im)
 
         # Image preprocessing
         img1 = Image.open(path1)
         img2 = Image.open(path2)
-        # size = (int(img1.size[0] / 40), int(img1.size[1] / 40))
-        size = img1.size
-        ## Resize image into a 50 times smaller size
-        # resized_1 = resize(img1, size)
-        resized_2 = resize(img2, size)
-        ## Improve brightness and contrast of the images
-        # img1_prc = contrast_and_brightness(resized_1)
-        img1_prc = img1
-        img2_prc = contrast_and_brightness(resized_2)
+
+        if num != 1:
+            ## Resize image into a 30 times smaller size
+            size = (int(img1.size[0] / 30), int(img1.size[1] / 30))
+            resized_1 = resize(img1, size)
+            resized_2 = resize(img2, size)
+            ## Improve brightness and contrast of the images
+            img1_prc = contrast_and_brightness(resized_1)
+            img2_prc = contrast_and_brightness(resized_2)
+
+        elif num > 1:
+            ## Resize target image into the size of reference image
+            size = img1.size
+            resized_2 = resize(img2, size)
+            img2_prc = contrast_and_brightness(resized_2)
+
+        else:
+            print("Incorrect input of time!")
+
+
+
         # Alignment
         print("Reference image : ", self.ref,
               "\nImage to be aligned : ", self.im)
@@ -49,8 +62,8 @@ class Worlflow():
                 # Change the name tag for different attempts
                 file_id = "{}_{}_{}".format(self.num, f, percent)
 
-                matchFilename = "final_output/aligned/matches_%s.jpg" %file_id  # features matching image
-                outFilename = "final_output/aligned/aligned_%s.jpg" %file_id #aligned image
+                matchFilename = "final_output/2nd/matches_%s.jpg" %file_id  # features matching image
+                outFilename = "final_output/2nd/aligned_%s.jpg" %file_id #aligned image
                 align = aln_orb.alignORB(ref, tar, matchFilename, outFilename, percent, f)
 
                 # Result testing
@@ -67,10 +80,10 @@ class Worlflow():
                     col = i % ncols
                     imnew.paste(im, (w * col, h * row))
 
-                testFilename = "final_output/quality test/test_%s.jpg" %file_id #quality test image
+                testFilename = "final_output/2nd/test_%s.jpg" %file_id #quality test image
                 print("Saving alignment quality test image: ", testFilename)
                 new_size = (ims[0].size[0], int(ims[0].size[1]/2))
-                imnew.resize(new_size).save(testFilename)
+                imnew.resize(new_size).save(testFilename, quality=90)
 
                 dist1, corr1 = quality.eucli_dist(img1_prc, out)
                 dist2, corr2 = quality.eucli_dist(img2_prc, out)
