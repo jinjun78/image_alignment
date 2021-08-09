@@ -10,3 +10,13 @@ The first step in this analysis is to make the connection between the same fibre
 
 ## [Aligning raw images](./analysis_attempts/README.md)
 Some attempts at automatically lining up pixels in images from adjacent serial sections using [OpenCV](https://opencv.org/).
+
+## Usage
+1. Fill in file names of reference image and target image, and the time of alignment in the ![main.py](main.py) file. Also change the name of output log file if needed.
+
+2. Run ![main.py](main.py) file in python to make alignment of the images.
+
+3. Output log is saved in text format. Aligned images from different parameters are saved in the directory of ![final_output/aligned](final_output/aligned). Test Alignments are saved in the directroy of ![final_output/quality test](final_output/quality%20test)
+
+
+
