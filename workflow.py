@@ -9,36 +9,32 @@ from align import align_orb as aln_orb, align_sift as aln_sift, \
 from tabulate import tabulate
 
 class Worlflow():
-    def __init__(self, ref, im, num):
+    def __init__(self, ref, im, time):
         self.ref = ref
         self.im = im
-        self.num = num
+        self.time = time
 
-        path1 = "original/P2 {}".format(ref)
+
+        path1 = "original/P2 {}".format(self.ref)
         # path1 = "final_output/aligned/good/{}".format(ref)
-        path2 = "original/P2 {}".format(im)
+        path2 = "original/P2 {}".format(self.im)
 
         # Image preprocessing
         img1 = Image.open(path1)
         img2 = Image.open(path2)
 
-        if num != 1:
-            ## Resize image into a 30 times smaller size
-            size = (int(img1.size[0] / 30), int(img1.size[1] / 30))
-            resized_1 = resize(img1, size)
-            resized_2 = resize(img2, size)
-            ## Improve brightness and contrast of the images
-            img1_prc = contrast_and_brightness(resized_1)
-            img2_prc = contrast_and_brightness(resized_2)
+        ## Resize image into a 30 times smaller size
+        size = (int(img1.size[0] / 30), int(img1.size[1] / 30))
+        resized_1 = resize(img1, size)
+        resized_2 = resize(img2, size)
+        ## Improve brightness and contrast of the images
+        img1_prc = contrast_and_brightness(resized_1)
+        img2_prc = contrast_and_brightness(resized_2)
 
-        elif num > 1:
-            ## Resize target image into the size of reference image
-            size = img1.size
-            resized_2 = resize(img2, size)
-            img2_prc = contrast_and_brightness(resized_2)
-
-        else:
-            print("Incorrect input of time!")
+        ## Resize target image into the size of reference image
+        # size = img1.size
+        # resized_2 = resize(img2, size)
+        # img2_prc = contrast_and_brightness(resized_2)
 
 
 
@@ -60,10 +56,11 @@ class Worlflow():
                 ### Name the id of output image
                 para = str(percent).replace(".", "")
                 # Change the name tag for different attempts
-                file_id = "{}_{}_{}".format(self.num, f, percent)
+                file_id = "{}_{}_{}".format(self.time, f, percent)
 
                 matchFilename = "final_output/2nd/matches_%s.jpg" %file_id  # features matching image
                 outFilename = "final_output/2nd/aligned_%s.jpg" %file_id #aligned image
+                #Align image
                 align = aln_orb.alignORB(ref, tar, matchFilename, outFilename, percent, f)
 
                 # Result testing
@@ -92,5 +89,6 @@ class Worlflow():
 
         columns = ['image','ED1', 'CC1', 'ED2', 'CC2']
         df = pandas.DataFrame(data, columns=columns)
+        df.to_csv('table1.csv', index=False)
         print(df.sort_values(by=['CC2'], ascending=False))
         print(df.sort_values(by=['ED2']))
