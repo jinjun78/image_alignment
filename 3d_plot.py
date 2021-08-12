@@ -4,7 +4,10 @@ from matplotlib.ticker import LinearLocator
 import pandas as pd
 import numpy as np
 
+# Read the results from alignment
 df = pd.read_csv('table1.csv')
+
+# Aligned images name
 image_name = []
 for x in df['image']:
     name = str(x)[2]+str(x)[-4:]
@@ -18,6 +21,7 @@ Y = df['ED2']
 # X, Y = np.meshgrid(X, Y)
 Z = df['CC2']
 
+# Set X and Y axis
 plt.xlabel("image name")
 plt.ylabel("Euclidean Distance")
 plt.xticks(X, image_name)
