@@ -14,9 +14,17 @@ Some attempts at automatically lining up pixels in images from adjacent serial s
 ## Usage
 1. Fill in file names of reference image and target image, and the time of alignment in the ![main.py](main.py) file. Also change the name of output log file if needed.
 
-2. Run ![main.py](main.py) file in python to make alignment of the images.
+2. Change the solution of preprocessing and the path of reference image in ![workflow](workflow.py) script by hashtag according to the alignment time.
 
-3. Output log is saved in text format. Aligned images from different parameters are saved in the directory of ![final_output/aligned](final_output/aligned). Test Alignments are saved in the directroy of ![final_output/quality test](final_output/quality%20test)
+3. Run ![main.py](main.py) file in python to make alignment of the images.
+
+3. Output log is saved in text format. Aligned images and test alignments from different parameters are saved in path previously edited on ![workflow](workflow.py).
+
+4. Run ![best_integrate](best_integrate.py) to save a new csv file of all the best alignments.
+
+4. Run ![line_plot](line_plot.py) to plot lines plot of alignment time and correlation coefficient.
+
+5. Run ![catplot](catplot.py) to plot a category plot of good matches percentage and max features.
 
 ## Directories
 1. [analysis_attempts](analysis_attempts) inclueds the history of attempts of aligning images.
