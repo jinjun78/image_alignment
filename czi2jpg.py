@@ -30,5 +30,5 @@ for i in fnames[:2]:
 # Should do quantifications on imarr, but note that it contains 16-bit integers
 # Need to convert to 8-bit to make an RGB image (with PIL)
     imarr2 = np.array(np.round((imarr-np.min(imarr))/(np.max(imarr)-np.min(imarr))*255.0), dtype=np.uint8)
-    Image.fromarray(imarr2).save(outname + ".png")
-    print("Saved", outname+".png")
+    Image.fromarray(imarr2).save(outname + ".jpg")
+    print("Saved", outname+".jpg")
