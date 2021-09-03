@@ -1,9 +1,8 @@
 Pillow
 czifile
 opencv-contrib-python
-silx
-scipy
-pyopencl
+pandas
+matplotlib
 tabulate
 
 

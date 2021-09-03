@@ -18,5 +18,14 @@ Some attempts at automatically lining up pixels in images from adjacent serial s
 
 3. Output log is saved in text format. Aligned images from different parameters are saved in the directory of ![final_output/aligned](final_output/aligned). Test Alignments are saved in the directroy of ![final_output/quality test](final_output/quality%20test)
 
+## Directories
+1. [analysis_attempts](analysis_attempts) inclueds the history of attempts of aligning images.
+
+2. [original](original) includes original adjacent sectional images in the JPEG file format.
+
+3. [align](align) includes scripts that used in the workflow.
+
+4. [final_output](final_output) includes the the sources of final alignment in the dissertation.
+
 
 
