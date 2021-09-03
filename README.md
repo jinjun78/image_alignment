@@ -1,4 +1,4 @@
-# 3D reconstruction of sequential, longitudinal sections of skeletal muscle fibres
+# Aligning cross-sectional images of human skeletal muscle tissue biopsies using machine learning
 
 Independent, stochastic clonal expansion of mtDNA mutations within single cells is thought to be the driver behind the progression of mitochondrial DNA (mtDNA) diseases. [Lawless et al. (2020)](https://doi.org/10.1098/rsob.200061) and [Piotrowicz (2020)](http://mito.ncl.ac.uk/clonexp/clonal_expansion/) describe our current, limited understanding of how clonal expansion occurs.
 
